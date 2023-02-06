@@ -1,12 +1,13 @@
 import math
-from ball import *
+from ball import Ball
 from config import *
 
 
 class Tank(pygame.sprite.Sprite):
-    def __init__(self, sheet, pos_x, pos_y, current_sprite):
+    def __init__(self, sheet, pos, current_sprite, joystick):
         super().__init__()
         self.score = 0
+        self.joystick = joystick
         self.img_tank = []
         self.ball_list = []
         self.ball_sprites = pygame.sprite.Group()
@@ -16,9 +17,9 @@ class Tank(pygame.sprite.Sprite):
         self.direction = current_sprite
         self.image = self.img_tank[self.direction]
         self.rect = self.image.get_rect()
-        self.rect.center = (pos_x, pos_y)
-        self.x = pos_x
-        self.y = pos_y
+        self.rect.center = (pos[0], pos[1])
+        self.x = pos[0]
+        self.y = pos[1]
         self.rot = 0
         self.moveW = False
         self.shoot = False
